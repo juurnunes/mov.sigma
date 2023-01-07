@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block 'head' %}
+
+<link href="{% static 'mov_ctn/css/ctn_unico.css' %}" rel="stylesheet">
+
+{% endblock%}
+
+
+{% block 'body' %}
+
+<div class="wrapper">
+    <div class="box">
+        <div class="header text-center">
+            <h3 class="titulo">Detalhes</h3>
+        </div>
+
+        {% if messages %}
+            {% for message in messages%}
+                <br>
+                <section class="alert {{message.tags}}">
+                    {{message}}
+                </section>
+            {% endfor %}
+        {% endif %}
+
+        <div class="body-box">
+            <form action="{% url 'ctn_unico' ctn.id %}" method="POST"> {% csrf_token %}
+                <div class="row">
+                    <div class="col-md">
+                        <label for="Container">Container:</label>
+                        <input class="form-control" disabled type="text" maxlength="11" name="container"
+                            placeholder="Digite o container" value="{{ctn.container}}">
+                 </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md">
+                            <label>Unidade:</label>
+                            <input disabled type="text" class="form-control" name="unidade" placeholder="Digite o número do lacre" value="{{ctn.get_unidade_display}}">
+                        </div>
+                    </div>
+
+                <div class="row">
+                    <div class="col-md">
+                        <label for="tipo">Tipo:</label>
+                        <input disabled type="text" class="form-control" value="{{ctn.get_tipo_display}}">
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md">
+                        <label for="modal">Modal:</label>
+                        <input disabled type="text" class="form-control" value="{{ctn.get_modal_display}}">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md">
+                        <label for="modal">Estado:</label>
+                        <input disabled type="text" class="form-control" value="{{ctn.get_estado_display}}">
+                    </div>
+                </div>
+
+                <div class="col-md">
+                    <label>Lacre:</label>
+                    <input disabled type="text" class="form-control" name="lacre" placeholder="Digite o número do lacre"
+                        value="{{ctn.lacre}}">
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md">
+
+                        <label for="data_entrada">Data Entrada:</label>
+                        <input disabled class="form-control" type="text" name="data_entrada"
+                            value="{{ctn.data_entrada |date:'d-m-y H:i'}}">
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md">
+                        <label for="observ">Observações:</label>
+                        <input disabled class="form-control" type="text" maxlength="255" name="observ"
+                            value="{{ctn.observ}}">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md">
+                        <label for="usuinc">Usuário de Inclusão:</label>
+                        <input disabled class="form-control" type="text" maxlength="255" name="usuinc" value="{{ctn.usuario_inclusao}}">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md">
+                        <label for="usuatu">Usuário de Atualização:</label>
+                        <input disabled class="form-control" type="text" maxlength="255" name="usuatu" {% if not ctn.usuario_alteracao is None %} value="{{ctn.usuario_alteracao}}" {% endif %}>
+                    </div>
+                </div>
+
+                
+                <div class="row">
+                    <div class="col-md">
+
+                    <label for="datatu">Data de Saída:</label>
+                    <input disabled class="form-control" type="text" name="datatu"
+                            value="{{ctn.data_saida |date:'d-m-y H:i'}}">
+                </div>
+
+                
+                {% if ctn.data_saida is None %}
+                <div class="text-center p-3">
+
+                        <input type="submit" value="Gerar Saída" class="btn btn-orange">
+
+                </div>
+                {% endif %}
+
+
+            </form>
+
+            {% if perms.mov_ctn.delete_movimentos %}
+
+                <div class="text-center p-3">
+
+                    <a href="{% url 'ctn_excluir' ctn.id %}"><input value="Excluir" class="btn btn-orange"></a>
+
+                </div>
+
+            {% endif %}
+
+
+
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock%}

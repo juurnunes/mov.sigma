@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block 'head' %}
+
+<link href="{% static 'mov_ctn/css/novo_ctn.css' %}" rel="stylesheet">
+
+{% endblock%}
+
+
+{% block 'body' %}
+
+<div class="wrapper">
+    <div class="box">
+        <div class="header text-center">
+            <h3 class="titulo">Entrada de Container</h3>
+        </div>
+
+        {% if messages %}
+        {% for message in messages%}
+        <br>
+        <section class="alert {{message.tags}}">
+            {{message}}
+        </section>
+        {% endfor %}
+        {% endif %}
+
+        <div class="body-box">
+            <form action="{% url 'novo_ctn' %}" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+                <div class="row">
+                    <div class="col-md">
+                        <label for="Container">Container</label>
+                        <input class="form-control ctn" type="text" maxlength="11" name="container" placeholder="Digite o container" oninput="this.value = this.value.toUpperCase()" >
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md">
+                        <label for="unidade">Unidade:</label>
+                        <select class="form-select" name="unidade" required>
+                            <option disabled selected value>Unidade</option>
+                            <option value="20">20'</option>
+                            <option value="40">40'</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md">
+                        <label for="tipo">Tipo:</label>
+                        <select class="form-select" name="tipo" required>
+                            <option disabled selected value>Tipo</option>
+                            <option value="DRY">DRY</option>
+                            <option value="FR">Flat Rack</option>
+                            <option value="HC">HC</option>
+                            <option value="OT">Open Top</option>
+                            <option value="TK">Tank</option>
+                            <option value="RF">Reefer</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md">
+                        <label for="modal">Modal:</label>
+                        <select class="form-select" name="modal" required>
+                            <option disabled selected value>Modal</option>
+                            <option value="Importação">Importação</option>
+                            <option value="Exportação">Exportação</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md">
+                        <label for="estado">Estado:</label>
+                        <select class="form-select" name="estado" required>
+                            <option disabled selected value>Estado</option>
+                            <option value="Cheio">Cheio</option>
+                            <option value="Vazio">Vazio</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md">
+                    <label>Lacre:</label>
+                    <input type="text" class="form-control" name="lacre" placeholder="Digite o número do lacre">
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md">
+
+                        <label for="datend">Data Entrada:</label>
+                        <input class="form-control" type="datetime-local" name="data_entrada" required>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md">
+                        <label for="observ">Observações:</label>
+                        <input class="form-control" type="text" maxlength="255" name="observ">
+                    </div>
+                </div>
+
+                <div class="text-center p-3">
+
+                    <input type="submit" value="Incluir Container" class="btn btn-orange">
+
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock%}

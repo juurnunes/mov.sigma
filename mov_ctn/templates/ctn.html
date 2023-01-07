@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+<link href="{% static 'mov_ctn/css/ctn.css' %}" rel="stylesheet">
+{% endblock%}
+
+{% block 'body' %}
+<div class="wrapper">
+    <div class="box">
+        <div class="header-box">
+            {% if messages %}
+            {% for message in messages %}
+            <section class="alert {{message.tags}}">
+                {{message}}
+            </section>
+            {% endfor %}
+            {% endif %}
+            <h2 class="titulo">Containers no Pátio</h2>
+        </div>
+        
+        <div class="borda-box"></div>
+        <div class="body-box text-center">
+            {% if perms.mov_ctn.add_movimentos %}
+                <a class="btn btn-orange" href="{% url 'novo_ctn' %}">Novo Container</a>
+            {% endif %}
+            <form action="{% url 'ctn' %}" method="GET">{% csrf_token %}
+                <div class="row">
+
+
+                    <div class="col">
+                        <input type="text" placeholder="Busque pelo n° do container" class="form-control"
+                            name="filtrar">
+                    </div>
+
+
+                    <div class="filtrar">
+                        <button type="submit" class="btn btn-orange">Pesquisar</button>
+                    </div>
+                </div>
+            </form>
+
+            <table class="table table-striped" cellpadding="20">
+                <tr>
+                    <th scope="col">Container</th>
+                    <th scope="col">Unidade</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Entrada</th>
+                </tr>
+
+
+                {% for movimentos in movimento%}
+                <tr class="tabela-linha">
+                    <td><a href="{% url 'ctn_unico' movimentos.id %}">{{movimentos.container}}</a></td>
+                    <td>{{movimentos.unidade}} {{movimentos.tipo}}</td>
+                    <td>{{movimentos.estado}}</td>
+                    <td>{{movimentos.data_entrada |date:'d-m-y H:i'}}</td>
+                </tr>
+                {% endfor %}
+
+            </table>
+        </div>
+
+
+
+
+    </div>
+</div>
+
+
+
+{% endblock%}

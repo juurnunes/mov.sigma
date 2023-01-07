@@ -1,0 +1,36 @@
+.borda-box{
+    border-top: 1px solid black;
+}
+.body-box{
+    padding: 10px;
+}
+td, tr{
+    text-align: center;
+}
+.btn-orange{
+
+    background-color: #6495ED;
+    color: white;
+    margin: 10px;
+}
+.tabela-linha{
+    background-color: #F5FFFA;
+}
+.titulo{    
+    text-align: center;
+}
+.box {
+    
+    margin: 10px;
+    background: #fff;
+    box-shadow: 4px 4px 10px rgba(0,0,0,.3);
+}
+
+ 
+.table-striped>tbody>tr:nth-child(odd)>th {
+   background-color: #191970;
+   color: white;
+ }
+ .filtrar{
+    text-align: center;
+ }

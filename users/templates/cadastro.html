@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block 'head' %}
+
+<link href="{% static 'users/css/cadastro.css' %}" rel="stylesheet">
+
+{% endblock%}
+
+
+{% block 'body' %}
+
+<div class="wrapper">
+    <div class="box">
+        <div class="header text-center">
+            <h3 class="titulo">Cadastro de Usuários</h3>
+        </div>
+
+        {% if messages %}
+        {% for message in messages%}
+        <br>
+        <section class="alert {{message.tags}}">
+            {{message}}
+        </section>
+        {% endfor %}
+        {% endif %}
+
+        <div class="body-box">
+            <form action="{% url 'cadastro' %}" method="POST"> {% csrf_token %}
+                <div class="row">
+                    <div class="col-md">
+                        <label for="login">Login:</label>
+                        <input class="form-control" type="text" name="login" placeholder="Digite o login do usuário">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md">
+                        <label for="nome">Nome:</label>
+                        <input class="form-control" type="text" name="nome" placeholder="Digite o nome do usuário">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md">
+                        <label for="senha">Senha:</label>
+                        <input class="form-control" type="password" name="senha" placeholder="Digite a senha do usuário">
+                    </div>
+                </div>
+                <div class="text-center p-3">
+
+                    <input type="submit" value="Incluir Usuário" class="btn btn-orange">
+
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock%}
