@@ -30,7 +30,7 @@
                 <div class="row">
                     <div class="col-md">
                         <label for="Container">Container</label>
-                        <input class="form-control ctn" type="text" maxlength="11" name="container" placeholder="Digite o container" oninput="this.value = this.value.toUpperCase()" >
+                        <input class="form-control ctn" type="text" maxlength="11" name="container" data-mask="AAAA.000.000-0" placeholder="Digite o container" oninput="this.value = this.value.toUpperCase()" >
                     </div>
                 </div>
                 <div class="row">
@@ -115,5 +115,6 @@
 </div>
 
 
-
+<script src="{% static 'mov_ctn/js/jquery.min.js' %}"></script> 
+<script src="{% static 'mov_ctn/js/jquery.mask.min.js' %}"></script> 
 {% endblock%}
