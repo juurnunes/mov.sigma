@@ -33,6 +33,7 @@ def novo_ctn(request):
         movimento_find = movimentos.objects.filter(data_saida__isnull = True, container=container)
         
                
+        print (container)
         if (movimento_find):
             
             messages.add_message(request, constants.ERROR, 'Container já está no terminal.')
