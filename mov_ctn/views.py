@@ -6,6 +6,7 @@ from django.contrib.messages import constants
 from .models import movimentos
 from datetime import datetime
 from django.contrib.auth.decorators import login_required, permission_required
+from .validador import valid
 
 
 # Create your views here.
@@ -37,7 +38,7 @@ def novo_ctn(request):
             messages.add_message(request, constants.ERROR, 'Container já está no terminal.')
             return redirect ('/mov/novo_ctn/')            
 
-        if (len(container.strip()) != 11):
+        if valid(container) == False:
             messages.add_message(request, constants.ERROR, 'Número de container inválido')
             return redirect ('/mov/novo_ctn/')
 
