@@ -49,11 +49,11 @@
                 </tr>
 
 
-                {% for movimentos in movimento%}
+                {% for movimentos in movimento %}
                 <tr class="tabela-linha">
                     <td><a href="{% url 'ctn_unico' movimentos.id %}">{{movimentos.container}}</a></td>
-                    <td>{{movimentos.unidade}} {{movimentos.tipo}}</td>
-                    <td>{{movimentos.estado}}</td>
+                    <td>{{ movimentos.unidade }} {{ movimentos.tipo }}</td>
+                    <td>{{ movimentos.get_estado_display }}</td>
                     <td>{{movimentos.data_entrada |date:'d-m-y H:i'}}</td>
                 </tr>
                 {% endfor %}
