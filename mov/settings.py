@@ -149,3 +149,8 @@ MESSAGE_TAGS = {
 
 LOGIN_REDIRECT_URL = '/mov/ctn/'
 LOGOUT_REDIRECT_URL = '/auth/login/'
+
+## Configurações de Session
+
+SESSION_COOKIE_AGE = 2400
+SESSION_SAVE_EVERY_REQUEST = True
